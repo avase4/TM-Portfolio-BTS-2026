@@ -14,6 +14,34 @@ document.addEventListener('DOMContentLoaded', function() {
         navMenu.classList.toggle('active');
     });
 
+    // Dropdown Entreprise
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const navDropdown = document.querySelector('.nav-dropdown');
+
+    if (dropdownToggle && navDropdown) {
+        dropdownToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            navDropdown.classList.toggle('active');
+        });
+
+        // Fermer le dropdown quand on clique sur un lien du dropdown
+        const dropdownLinks = document.querySelectorAll('.dropdown-link');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navDropdown.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Fermer le dropdown quand on clique ailleurs
+        document.addEventListener('click', (e) => {
+            if (!navDropdown.contains(e.target)) {
+                navDropdown.classList.remove('active');
+            }
+        });
+    }
+
     // Fermer le menu quand on clique sur un lien
     navLinks.forEach(link => {
         link.addEventListener('click', () => {

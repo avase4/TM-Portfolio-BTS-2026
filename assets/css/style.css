@@ -110,7 +110,13 @@ img {
 
 .nav-menu {
     display: flex;
+    align-items: center;
     gap: 30px;
+}
+
+.nav-menu > li {
+    display: flex;
+    align-items: center;
 }
 
 .nav-link {
@@ -177,6 +183,82 @@ img {
 
 .hamburger::after {
     top: 8px;
+}
+
+/* Dropdown Menu */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.dropdown-arrow {
+    font-size: 0.55rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-dropdown:hover .dropdown-arrow,
+.nav-dropdown.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 8px 0;
+    min-width: 230px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-lg);
+    z-index: 1001;
+}
+
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown.active .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: var(--text-secondary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.dropdown-link:hover {
+    background: rgba(0, 212, 170, 0.1);
+    color: var(--accent-primary) !important;
+}
+
+.dropdown-link i {
+    font-size: 0.85rem;
+    color: var(--accent-primary);
+    width: 20px;
+    text-align: center;
 }
 
 /* =============================================
@@ -1454,6 +1536,49 @@ img {
 
     .nav-toggle {
         display: flex;
+    }
+
+    .nav-dropdown {
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        position: static;
+        transform: none;
+        background: var(--bg-tertiary);
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 1;
+        visibility: visible;
+        transition: max-height 0.3s ease;
+    }
+
+    .nav-dropdown.active .dropdown-menu {
+        transform: none;
+        max-height: 200px;
+        padding: 5px 0;
+    }
+
+    .nav-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        max-height: 0;
+        padding: 0;
+    }
+
+    .nav-dropdown:hover.active .dropdown-menu {
+        max-height: 200px;
+        padding: 5px 0;
+    }
+
+    .dropdown-link {
+        padding: 8px 30px;
+        font-size: 0.85rem;
     }
 
     .hero-info h1 {
